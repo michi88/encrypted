@@ -32,7 +32,10 @@ Or create a key yourself:
 ```ts
 import { encrypted, decrypted, generateKey, encodeBase64, decodeBase64, newRandomSalt } from "encrypted";
 const key = await generateKey("some test password", newRandomSalt());
-// you can also base64 encode this key if you want to use it in the #hash part of a link for example (the good part about that is that the hash is never transmitted to your server so you won't need to worry about it ending up in your logs. Do worry about analytics libraries though.
+// You can also base64 encode this key if you want to use it in the #hash part of a link 
+// for example (the good part about that is that the hash is never transmitted to your 
+// server so you won't need to worry about it ending up in your logs. 
+// Do worry about analytics libraries though.
 const encodedKey = encodeBase64(key);
 const decodedKey = decodeBase64(encodedKey);
 const encryptedObject = encrypted({my: ['secret', 'object']}, {'key': decodedKey});

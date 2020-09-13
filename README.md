@@ -2,7 +2,9 @@
 
 # Encrypted, just some client side encryption helpers
 
-Code is here only to be reviewed at the moment, please do not use!!
+```
+npm install encrypted --save
+```
 
 ```ts
 import { encrypted, decrypted } from "encrypted";

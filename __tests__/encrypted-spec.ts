@@ -7,6 +7,8 @@ import {
   newRandomSalt,
   SecretboxEncryptedDocument,
   encrypt,
+  encodeBase64,
+  decodeBase64,
 } from "../src";
 import * as Encrypted from "../src/encrypted";
 import { secretbox } from "tweetnacl";
@@ -17,7 +19,6 @@ test("Should encrypt and decrypt data with a password", async () => {
     await encrypted({ test: "data" }, secretOpts),
     secretOpts
   )) as EncryptableData;
-  console.log(await encrypted({ test: "data" }, secretOpts));
   expect(result["test"]).toBe("data");
 });
 
@@ -94,4 +95,11 @@ test("Passing no nonce should work", async () => {
       `Invalid nonce, must be a Uint8Array of length ${secretbox.nonceLength}`
     )
   );
+});
+
+test("Using encodeBase64 and decodeBase64 imported from 'encrypted' should work", async () => {
+  const key = await generateKey("test", newRandomSalt()); // binary key
+  const encodedKey = encodeBase64(key);
+  const decodedKey = decodeBase64(encodedKey);
+  expect(key).toStrictEqual(decodedKey);
 });

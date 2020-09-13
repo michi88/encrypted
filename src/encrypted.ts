@@ -7,6 +7,8 @@ import {
 } from "tweetnacl-util";
 import scrypt, { Options as ScryptOptions } from "scrypt-async";
 
+export { decodeUTF8, encodeUTF8, encodeBase64, decodeBase64 };
+
 type Json =
   | null
   | boolean
